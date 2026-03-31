@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Camera, Cpu, Smartphone } from "lucide-react";
+import { Camera, Cpu, CheckCircle2 } from "lucide-react"; // حيدنا Smartphone وزدنا CheckCircle2
 
 const steps = [
   {
@@ -15,16 +15,16 @@ const steps = [
     description: "Notre algorithme analyse et crée plusieurs propositions de design adaptées.",
   },
   {
-    icon: Smartphone,
+    icon: CheckCircle2, // الـ Icon الجديدة
     step: "03",
-    title: "Visualisez en AR",
-    description: "Explorez le résultat en réalité augmentée et choisissez votre préféré.",
+    title: "Visualisez le résultat", // العنوان الجديد بلا AR
+    description: "Explorez les rendus professionnels en HD et choisissez votre design préféré.", // الوصف الجديد
   },
 ];
 
 const HowItWorks = () => {
   return (
-    <section className="py-24">
+    <section className="py-24 bg-background">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -33,15 +33,15 @@ const HowItWorks = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
             Comment ça marche ?
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Trois étapes simples pour transformer votre intérieur.
+          <p className="text-muted-foreground max-w-xl mx-auto text-lg">
+            Trois étapes simples pour transformer votre intérieur grâce à notre IA.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-12 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
           {steps.map((step, index) => (
             <motion.div
               key={step.step}
@@ -49,20 +49,24 @@ const HowItWorks = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="text-center"
+              className="text-center group"
             >
-              <div className="relative mx-auto mb-6">
-                <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                  <step.icon className="h-8 w-8 text-primary" />
+              <div className="relative mx-auto mb-8">
+                {/* الدائرة الكبيرة اللي فيها الـ Icon */}
+                <div className="w-24 h-24 rounded-3xl bg-primary/10 flex items-center justify-center mx-auto transition-transform group-hover:scale-110 group-hover:rotate-3 duration-300 border border-primary/5">
+                  <step.icon className="h-10 w-10 text-primary" />
                 </div>
-                <span className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-primary text-primary-foreground text-sm font-bold flex items-center justify-center">
+                {/* الدائرة الصغيرة اللي فيها الرقم */}
+                <span className="absolute -top-3 right-[30%] w-9 h-9 rounded-full bg-primary text-primary-foreground text-sm font-extrabold flex items-center justify-center shadow-lg border-4 border-background">
                   {step.step}
                 </span>
               </div>
-              <h3 className="font-serif text-lg font-semibold text-foreground mb-2">
+              <h3 className="font-serif text-2xl font-bold text-foreground mb-3">
                 {step.title}
               </h3>
-              <p className="text-muted-foreground text-sm">{step.description}</p>
+              <p className="text-muted-foreground text-base leading-relaxed">
+                {step.description}
+              </p>
             </motion.div>
           ))}
         </div>

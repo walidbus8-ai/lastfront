@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Wand2, ScanEye, View } from "lucide-react";
+import { Wand2, ScanEye, Image } from "lucide-react";
 
 const features = [
   {
@@ -12,20 +12,23 @@ const features = [
     icon: ScanEye,
     title: "Analyse Intelligente",
     description:
-      "Notre IA analyse l'espace, l'éclairage et la disposition pour vous recommander les meilleures couleurs, styles et agencements adaptés à votre budget.",
+      "Notre IA analyse l'espace, l'éclairage et la disposition pour vous recommander les meilleures couleurs, styles et agencements adaptés à votre pièce.",
   },
   {
-    icon: View,
-    title: "Réalité Augmentée",
+    icon: Image,
+    title: "Rendus Haute Définition",
     description:
-      "Visualisez le nouveau design directement dans votre pièce grâce à la réalité augmentée. Testez, ajustez et validez avant de vous lancer.",
+      "Visualisez le nouveau design avec une qualité exceptionnelle. Comparez les styles et sauvegardez vos transformations préférées en un clic.",
   },
 ];
 
 const Features = () => {
   return (
-    <section id="features" className="py-24 bg-secondary/30">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="features" className="py-24 bg-secondary/30 relative overflow-hidden">
+      {/* إضافة لمسة خفيفة ديال الخلفية باش يجي متناسق مع الهيرو */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.03)_0,transparent_70%)] pointer-events-none" />
+
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -33,15 +36,15 @@ const Features = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">
             Fonctionnalités Principales
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Une suite d'outils puissants pour transformer votre espace de vie en quelques clics.
+          <p className="text-muted-foreground max-w-xl mx-auto text-lg">
+            Une suite d'outils puissants pour transformer votre espace de vie grâce à l'intelligence artificielle.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -49,15 +52,15 @@ const Features = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="bg-card rounded-2xl p-8 border border-border hover:shadow-lg transition-shadow"
+              className="group bg-card rounded-[2rem] p-10 border border-border hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300"
             >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-                <feature.icon className="h-6 w-6 text-primary" />
+              <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <feature.icon className="h-7 w-7 text-primary" />
               </div>
-              <h3 className="font-serif text-xl font-semibold text-foreground mb-3">
+              <h3 className="font-serif text-2xl font-bold text-foreground mb-4">
                 {feature.title}
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-muted-foreground text-base leading-relaxed">
                 {feature.description}
               </p>
             </motion.div>
